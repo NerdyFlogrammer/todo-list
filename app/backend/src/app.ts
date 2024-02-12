@@ -29,7 +29,11 @@ class App {
   }
 
   private routes(): void {
-    this.app.use('/', taskRouter);
+    // Pfadpräfix aus der Umgebungsvariablen lesen
+    const pathPrefix = process.env.PATH_PREFIX || '';
+
+    // Das Pfadpräfix zu allen taskRouter-Routen hinzufügen
+    this.app.use(`${pathPrefix}/`, taskRouter);
   }
 }
 
