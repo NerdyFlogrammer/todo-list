@@ -2,6 +2,8 @@ version: '3.9'
 services:
   frontend:
     build: ./frontend
+    networks:
+      - waf_network
     container_name: app_frontend
     ports:
       - 3000:3000
@@ -15,6 +17,8 @@ services:
       retries: 5
   backend:
     build: ./backend
+    networks:
+      - waf_network
     container_name: app_backend
     ports:
       - 3001:3001
@@ -38,6 +42,8 @@ services:
       retries: 5
   db:
     image: mysql:8.0.21
+    networks:
+      - waf_network
     platform: linux/x86_64 
     container_name: db
     ports:
@@ -51,3 +57,6 @@ services:
       retries: 5
     cap_add:
       - SYS_NICE
+networks:
+  waf_network:
+    external: true
