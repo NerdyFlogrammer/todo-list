@@ -31,6 +31,7 @@ services:
       - DB_HOST=db
       - DB_NAME=todolist
       - DB_PORT=3306
+      - PATH_PREFIX=/api
     healthcheck:
       test: [ "CMD", "lsof", "-t", "-i:3001" ]
       timeout: 10s
